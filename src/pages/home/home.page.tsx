@@ -125,7 +125,7 @@ function HomePage() {
   };
   return (
     <SalaryContext.Provider value={{ formData, setFormData }}>
-      <div className="container mx-auto p-4 lg:grid lg:grid-cols-2 gap-4">
+      <div className="container mx-auto p-4 grid grid-cols-1  lg:grid-cols-2 gap-4">
         <div>
           <div className="py-1">
             <h1 className="text-3xl text-black mt-2 mb-2">
