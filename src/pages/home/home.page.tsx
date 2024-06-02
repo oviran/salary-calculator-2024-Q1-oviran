@@ -250,7 +250,7 @@ function HomePage() {
                   Add Deduction
                 </Button>
               </div>
-              <Button style={{ position: "fixed", left: "648px", top: "128px", height: "40px", width: "66px" }}
+              <Button style={{ position: "fixed", left: "548px", top: "128px", height: "40px", width: "66px" }}
                 className="mt-4 bg-cyan-500 text-balance"
                 onClick={handleReset}
                 type="button"
