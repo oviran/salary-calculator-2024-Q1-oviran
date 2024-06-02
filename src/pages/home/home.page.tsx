@@ -125,149 +125,144 @@ function HomePage() {
   };
   return (
     <SalaryContext.Provider value={{ formData, setFormData }}>
-      <div
-        className="container mx-auto p-4 "
-        style={{
-          position: "fixed",
-          left: "128px",
-          top: "80px",
-          height: "616px",
-          width: "680px",
-        }}
-      >
-        <div className="py-1">
-          <h1 className="text-3xl text-black mt-2 mb-2">
-            Calculate your salary
-          </h1>
+      <div className="container mx-auto p-4 lg:grid lg:grid-cols-2 gap-4">
+        <div>
+          <div className="py-1">
+            <h1 className="text-3xl text-black mt-2 mb-2">
+              Calculate your salary
+            </h1>
+          </div>
+          <form className="py-8">
+            <div>
+              <Label className="text-lg text-black" htmlFor="salary">
+                Basic Salary
+              </Label>
+              <Input
+                className="mt-4"
+                placeholder="Amount"
+                id="salary"
+                name="salary"
+                type="number"
+                value={formData.salary}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="mt-4">
+              <Label className="text-lg text-black" htmlFor="earnings">
+                Earnings
+              </Label>
+              <div className="text-xm text-stone-500">
+                <Label>Allowance, Fixed Allowance, Bonus and etc.</Label>
+              </div>
+              <div>
+                {formData.earnings.map((earning, i) => (
+                  <div
+                    key={i}
+                    className="flex justify-left gap-x-4 items-center"
+                  >
+                    <Input
+                      className="mt-4 mr-2"
+                      placeholder="Pay Details (Title)"
+                      name={`earnings.${i}.title`}
+                      value={earning.title}
+                      onChange={handleChange}
+                    />
+                    <Input
+                      className="mt-4 mr-2"
+                      placeholder="Amount"
+                      type="number"
+                      name={`earnings.${i}.amount`}
+                      value={earning.amount}
+                      onChange={handleChange}
+                    />
+                    <label className="mt-4" htmlFor="epf/etf">
+                      EPF/ETF
+                    </label>
+                    <input
+                      type="checkbox"
+                      className="mt-4 mr-2 custom-checkbox"
+                      name={`earnings.${i}.isEpf`}
+                      checked={earning.isEpf}
+                      onChange={handleChange}
+                    />
+                    <Button
+                      className="mt-4 bg-red-600 text-balance"
+                      type="button"
+                      onClick={() => removeEarning(i)}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                ))}
+                <Button
+                  className="mt-4 bg-teal-400 text-balance"
+                  onClick={addEarning}
+                  type="button"
+                >
+                  Add Earning
+                </Button>
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <Label className="text-lg text-black" htmlFor="deduction">
+                Deductions
+              </Label>
+              <div className="text-xm text-stone-500">
+                <Label>Salary Advances, Loan Deductions and all.</Label>
+              </div>
+              <div>
+                {formData.deductions.map((deduction, i) => (
+                  <div
+                    key={i}
+                    className="flex justify-left gap-x-4 items-center"
+                  >
+                    <Input
+                      className="mt-4 mr-2"
+                      placeholder=" (Title)"
+                      name={`deductions.${i}.title`}
+                      value={deduction.title}
+                      onChange={handleChange}
+                    />
+                    <Input
+                      className="mt-4 mr-2"
+                      placeholder="Amount"
+                      type="number"
+                      name={`deductions.${i}.amount`}
+                      value={deduction.amount}
+                      onChange={handleChange}
+                    />
+                    <Button
+                      className="mt-4 bg-red-600 text-balance"
+                      type="button"
+                      onClick={() => removeDeduction(i)}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                ))}
+                <Button
+                  className="mt-4 bg-teal-400  text-balance"
+                  onClick={addDeduction}
+                  type="button"
+                >
+                  Add Deduction
+                </Button>
+              </div>
+              <Button
+                className="mt-4 bg-cyan-500 text-balance"
+                onClick={handleReset}
+                type="button"
+              >
+                Reset
+              </Button>
+            </div>
+          </form>
         </div>
-        <form className="py-8">
-          <div>
-            <Label className="text-lg text-black" htmlFor="salary">
-              Basic Salary
-            </Label>
-            <Input
-              className="mt-4"
-              placeholder="Amount"
-              id="salary"
-              name="salary"
-              type="number"
-              value={formData.salary}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="mt-4">
-            <Label className="text-lg text-black" htmlFor="earnings">
-              Earnings
-            </Label>
-            <div className="text-xm text-stone-500">
-              <Label>Allowance, Fixed Allowance, Bonus and etc.</Label>
-            </div>
-            <div>
-              {formData.earnings.map((earning, i) => (
-                <div key={i} className="flex justify-left gap-x-4 items-center">
-                  <Input
-                    className="mt-4 mr-2"
-                    placeholder="Pay Details (Title)"
-                    name={`earnings.${i}.title`}
-                    value={earning.title}
-                    onChange={handleChange}
-                  />
-                  <Input
-                    className="mt-4 mr-2"
-                    placeholder="Amount"
-                    type="number"
-                    name={`earnings.${i}.amount`}
-                    value={earning.amount}
-                    onChange={handleChange}
-                  />
-                  <label className="mt-4" htmlFor="epf/etf">
-                    EPF/ETF
-                  </label>
-                  <input
-                    type="checkbox"
-                    className="mt-4 mr-2 custom-checkbox"
-                    name={`earnings.${i}.isEpf`}
-                    checked={earning.isEpf}
-                    onChange={handleChange}
-                  />
-                  <Button
-                    className="mt-4 bg-red-600 text-balance"
-                    type="button"
-                    onClick={() => removeEarning(i)}
-                  >
-                    Remove
-                  </Button>
-                </div>
-              ))}
-              <Button
-                className="mt-4 bg-teal-400 text-balance"
-                onClick={addEarning}
-                type="button"
-              >
-                Add Earning
-              </Button>
-            </div>
-          </div>
-
-          <div className="mt-4">
-            <Label className="text-lg text-black" htmlFor="deduction">
-              Deductions
-            </Label>
-            <div className="text-xm text-stone-500">
-              <Label>Salary Advances, Loan Deductions and all.</Label>
-            </div>
-            <div>
-              {formData.deductions.map((deduction, i) => (
-                <div key={i} className="flex justify-left gap-x-4 items-center">
-                  <Input
-                    className="mt-4 mr-2"
-                    placeholder=" (Title)"
-                    name={`deductions.${i}.title`}
-                    value={deduction.title}
-                    onChange={handleChange}
-                  />
-                  <Input
-                    className="mt-4 mr-2"
-                    placeholder="Amount"
-                    type="number"
-                    name={`deductions.${i}.amount`}
-                    value={deduction.amount}
-                    onChange={handleChange}
-                  />
-                  <Button
-                    className="mt-4 bg-red-600 text-balance"
-                    type="button"
-                    onClick={() => removeDeduction(i)}
-                  >
-                    Remove
-                  </Button>
-                </div>
-              ))}
-              <Button
-                className="mt-4 bg-teal-400  text-balance"
-                onClick={addDeduction}
-                type="button"
-              >
-                Add Deduction
-              </Button>
-            </div>
-            <Button
-              className="mt-4 bg-cyan-500 text-balance"
-              style={{
-                position: "fixed",
-                left: "618px",
-                top: "158px",
-                width: "66px",
-              }}
-              onClick={handleReset}
-              type="button"
-            >
-              Reset
-            </Button>
-          </div>
-        </form>
-        <SalaryDisplay />
+        <div className="lg:col-span-1">
+          <SalaryDisplay />
+        </div>
       </div>
     </SalaryContext.Provider>
   );
