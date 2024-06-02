@@ -38,7 +38,7 @@ const SalaryDisplay: React.FC = () => {
   const { grossEarnings, grossDeductions, employeeEPF, apit, epf12, epf3, netSalary } = calculateNetSalary();
 
   return (
-    <div  style={{ position: "fixed", left: "832px", top: "20px", width: "480px" }}>
+    <div className="container mx-auto " style={{ position: "fixed", left: "752px", top: "20px", width: "480px" }}>
       <h1 className="text-3xl text-black mt-2 mb-4">Your Salary</h1>
       <Table className="custom-border">
         <TableHeader>

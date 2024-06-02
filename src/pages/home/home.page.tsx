@@ -114,7 +114,7 @@ function HomePage() {
   };
   return (
     <SalaryContext.Provider value={{ formData, setFormData }}>
-      <div  style={{ position: "fixed", left: "128px", top: "80px", height: "616px", width: "680px" }} >
+      <div className="container mx-auto p-4" style={{ position: "fixed", left: "128px", top: "80px", height: "616px", width: "680px" }} >
         <div className="py-1">
           <h1 className="text-3xl text-black mt-2 mb-2">Calculate your salary</h1>
         </div>
