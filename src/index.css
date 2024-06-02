@@ -92,29 +92,3 @@
     font-size: 14px;
   }
 }
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-  body {
-    font-size: 18px;
-  }
-
-
-}
-
-/* Large devices (desktops, 1024px and up) */
-@media (min-width: 1024px) {
-  body {
-    font-size: 20px;
-  }
-
-}
-
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  body {
-    font-size: 22px;
-  }
-
-
-}
