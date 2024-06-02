@@ -11,10 +11,19 @@ const SalaryDisplay: React.FC = () => {
     const employeeEPF = ((state.salary + state.earnings
       .filter((e) => e.isEpf)
       .reduce((acc, curr) => acc + curr.amount, 0)) - grossDeductions) * 0.08;
+    
+    let apit = (grossEarnings * 0.18) - 25500;
+    if (apit < 0) {
+      apit = 0;
+    }
 
-    const apit = (grossEarnings - grossDeductions - employeeEPF) * 0.025;
-    const epf12 = (grossEarnings - grossDeductions) * 0.12;
-    const epf3 = (grossEarnings - grossDeductions) * 0.03;
+    const epf12 = ((state.salary + state.earnings
+      .filter((e) => e.isEpf)
+      .reduce((acc, curr) => acc + curr.amount, 0)) - grossDeductions) * 0.12;
+
+    const epf3 = ((state.salary + state.earnings
+      .filter((e) => e.isEpf)
+      .reduce((acc, curr) => acc + curr.amount, 0)) - grossDeductions) * 0.03;
     return {
       grossEarnings,
       grossDeductions,
