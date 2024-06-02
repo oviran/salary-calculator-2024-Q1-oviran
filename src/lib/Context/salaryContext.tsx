@@ -1,3 +1,4 @@
+
 import { createContext } from "react";
 
 export type Earning = {
@@ -17,8 +18,16 @@ export type SalaryFormData = {
   deductions: Deduction[];
 };
 
-export type SalaryFormDataContext = {
-  salary: SalaryFormData;
+export const initialFormData: SalaryFormData = {
+  salary: 0,
+  earnings: [],
+  deductions: [],
 };
 
-export const SalaryContext = createContext<SalaryFormData | null>(null);
+export const SalaryContext = createContext<{
+  formData: SalaryFormData;
+  setFormData: React.Dispatch<React.SetStateAction<SalaryFormData>>;
+}>({
+  formData: initialFormData,
+  setFormData: () => {},
+});
