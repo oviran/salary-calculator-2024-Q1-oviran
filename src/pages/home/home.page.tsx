@@ -2,9 +2,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { SalaryContext, SalaryFormData, initialFormData } from "@/lib/Context/salaryContext";
+import {
+  SalaryContext,
+  SalaryFormData,
+  initialFormData,
+} from "@/lib/Context/salaryContext";
 import SalaryDisplay from "./components/SalaryDisplay";
-
 
 function HomePage() {
   const [formData, setFormData] = useState<SalaryFormData>(initialFormData);
@@ -13,8 +16,10 @@ function HomePage() {
     const { name, value, type, checked } = e.target;
 
     if (name === "salary") {
-      setFormData({ ...formData, salary: isNaN(parseInt(value)) ? 0 : parseInt(value) });
-      
+      setFormData({
+        ...formData,
+        salary: isNaN(parseInt(value)) ? 0 : parseInt(value),
+      });
     } else if (name.startsWith("earnings")) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [_, index, property] = name.split(".");
@@ -28,7 +33,10 @@ function HomePage() {
               return { ...el, title: value };
             }
             if (property === "amount") {
-              return { ...el, amount: isNaN(parseInt(value)) ? 0 : parseInt(value) };
+              return {
+                ...el,
+                amount: isNaN(parseInt(value)) ? 0 : parseInt(value),
+              };
             }
             if (property === "isEpf") {
               return { ...el, isEpf: type === "checkbox" ? checked : el.isEpf };
@@ -50,7 +58,10 @@ function HomePage() {
               return { ...el, title: value };
             }
             if (property === "amount") {
-              return { ...el, amount: isNaN(parseInt(value)) ? 0 : parseInt(value) };
+              return {
+                ...el,
+                amount: isNaN(parseInt(value)) ? 0 : parseInt(value),
+              };
             }
           }
           return el;
@@ -114,13 +125,26 @@ function HomePage() {
   };
   return (
     <SalaryContext.Provider value={{ formData, setFormData }}>
-      <div className="container mx-auto p-4" style={{ position: "fixed", left: "128px", top: "80px", height: "616px", width: "680px" }} >
+      <div
+        className="container mx-auto p-4 "
+        style={{
+          position: "fixed",
+          left: "128px",
+          top: "80px",
+          height: "616px",
+          width: "680px",
+        }}
+      >
         <div className="py-1">
-          <h1 className="text-3xl text-black mt-2 mb-2">Calculate your salary</h1>
+          <h1 className="text-3xl text-black mt-2 mb-2">
+            Calculate your salary
+          </h1>
         </div>
         <form className="py-8">
           <div>
-            <Label className="text-lg text-black" htmlFor="salary">Basic Salary</Label>
+            <Label className="text-lg text-black" htmlFor="salary">
+              Basic Salary
+            </Label>
             <Input
               className="mt-4"
               placeholder="Amount"
@@ -133,7 +157,9 @@ function HomePage() {
           </div>
 
           <div className="mt-4">
-            <Label className="text-lg text-black" htmlFor="earnings">Earnings</Label>
+            <Label className="text-lg text-black" htmlFor="earnings">
+              Earnings
+            </Label>
             <div className="text-xm text-stone-500">
               <Label>Allowance, Fixed Allowance, Bonus and etc.</Label>
             </div>
@@ -174,14 +200,20 @@ function HomePage() {
                   </Button>
                 </div>
               ))}
-              <Button className="mt-4 bg-teal-400 text-balance" onClick={addEarning} type="button">
+              <Button
+                className="mt-4 bg-teal-400 text-balance"
+                onClick={addEarning}
+                type="button"
+              >
                 Add Earning
               </Button>
             </div>
           </div>
 
           <div className="mt-4">
-            <Label className="text-lg text-black" htmlFor="deduction">Deductions</Label>
+            <Label className="text-lg text-black" htmlFor="deduction">
+              Deductions
+            </Label>
             <div className="text-xm text-stone-500">
               <Label>Salary Advances, Loan Deductions and all.</Label>
             </div>
@@ -212,11 +244,25 @@ function HomePage() {
                   </Button>
                 </div>
               ))}
-              <Button className="mt-4 bg-teal-400  text-balance" onClick={addDeduction} type="button">
+              <Button
+                className="mt-4 bg-teal-400  text-balance"
+                onClick={addDeduction}
+                type="button"
+              >
                 Add Deduction
               </Button>
             </div>
-            <Button className="mt-4 bg-cyan-500 text-balance" style={{ position: "fixed", left: "618px", top: "158px", width: "66px" }} onClick={handleReset} type="button">
+            <Button
+              className="mt-4 bg-cyan-500 text-balance"
+              style={{
+                position: "fixed",
+                left: "618px",
+                top: "158px",
+                width: "66px",
+              }}
+              onClick={handleReset}
+              type="button"
+            >
               Reset
             </Button>
           </div>
